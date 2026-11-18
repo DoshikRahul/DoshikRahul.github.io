@@ -42,10 +42,10 @@ html[lang=te] .short{letter-spacing:0;font-size:12px}
 /* story */
 .story{height:100vh;height:100svh;position:relative}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#5d3048}
-.scene{position:absolute;inset:0;opacity:0;transform:scale(1.08);transition:opacity 1.5s ease-in-out;will-change:opacity,transform}
+.scene{position:absolute;inset:0;opacity:0;transform:scale(1.08);transition:opacity 2s ease-in-out;will-change:opacity,transform}
 .scene.prev{opacity:1;z-index:1;transition:none}
 .scene.on{opacity:1;z-index:2}
-.scene.on,.scene.prev{animation:kb 9s linear both}
+.scene.on,.scene.prev{animation:kb 14s linear both}
 @keyframes kb{from{transform:scale(1.08)}to{transform:scale(1)}}
 .scene>svg{width:100%;height:100%;display:block}
 .vig{position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse at 50% 55%,transparent 40%,rgba(70,30,48,.32) 100%),linear-gradient(180deg,rgba(70,30,48,.3),transparent 30%,transparent 72%,rgba(70,30,48,.3))}
@@ -59,15 +59,15 @@ html[lang=te] .open{font-style:normal;font-size:15px;font-weight:600}
 .dots button::before{content:"";position:absolute;left:0;right:0;top:8px;height:3px;border-radius:3px;background:rgba(255,243,214,.35)}
 .dots i{position:absolute;left:0;top:8px;height:3px;border-radius:3px;background:#fff3d6;width:0}
 .dots .done i{width:100%}
-.dots .now i{animation:fillb 2s linear forwards}
+.dots .now i{animation:fillb 5s linear forwards}
 @keyframes fillb{to{width:100%}}
-.copy.on{opacity:1;transform:none;transition:opacity 1.2s ease .5s,transform 1.6s ease .5s}
+.copy.on{opacity:1;transform:none;transition:opacity 1.6s ease .8s,transform 2s ease .8s}
 .petals{position:absolute;inset:0;z-index:4;opacity:.8;pointer-events:none;overflow:hidden}
 .petals i{position:absolute;top:-30px;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle,#ffd77a 30%,#f2a35a 100%);opacity:0;animation:fall linear infinite;filter:blur(.3px)}
 .petals i.j{width:8px;height:8px;background:#fffaf0;box-shadow:0 0 6px #fff}
 .petals i.r{width:11px;height:14px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,#ffd0d8,#e8506f)}
 @keyframes fall{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.8}100%{transform:translate(var(--dx),108vh) rotate(var(--r));opacity:.35}}
-.copy{position:absolute;z-index:5;left:0;right:0;top:32%;padding:0 46px;text-align:center;color:#fff3d6;opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform 1s ease;pointer-events:none;will-change:opacity,transform;text-shadow:0 2px 22px rgba(80,36,52,.7),0 0 3px rgba(80,36,52,.35)}
+.copy{position:absolute;z-index:5;left:0;right:0;top:32%;padding:0 46px;text-align:center;color:#fff3d6;opacity:0;transform:translateY(10px);transition:opacity .9s ease,transform 1.2s ease;pointer-events:none;will-change:opacity,transform;text-shadow:0 2px 22px rgba(80,36,52,.7),0 0 3px rgba(80,36,52,.35)}
 .sacred{font:italic 500 19px/1.6 var(--serif);letter-spacing:.03em;color:var(--gold-l)}
 html[lang=te] .sacred{font-style:normal;letter-spacing:0;font-size:15px;font-weight:600}
 .tag{font:italic 400 19px var(--serif);margin:10px 0 14px;color:#ffe9b8}
@@ -325,8 +325,8 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
     <g id="zari"></g>
     <circle class="glowp" cx="200" cy="560" r="230" fill="url(#gC)"/>
     <!-- mangalsutra -->
-    <g id="msutra"></g>
-    <g transform="translate(0 -34)"><path d="M200 520L214 548Q200 566 186 548Z" fill="#f0cf7d" stroke="#b8872b" stroke-width="1.5"/><circle cx="200" cy="545" r="5" fill="#cc5563"/>
+    <g transform="translate(0 34)"><g id="msutra"></g></g>
+    <g transform="translate(0 0)"><path d="M200 520L214 548Q200 566 186 548Z" fill="#f0cf7d" stroke="#b8872b" stroke-width="1.5"/><circle cx="200" cy="545" r="5" fill="#cc5563"/>
     <circle cx="200" cy="580" r="11" fill="#f0cf7d" stroke="#b8872b" stroke-width="1.5"/><circle cx="200" cy="580" r="5" fill="#2aa36a"/>
     <circle class="shim" cx="200" cy="580" r="14" fill="none" stroke="#fff3c4" stroke-width="1"/></g>
     <!-- bangles -->
@@ -358,9 +358,9 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
     <!-- gopuram silhouette -->
     <g fill="#4a1038" opacity=".75" transform="translate(0 150)"><polygon points="140,560 260,560 252,510 148,510"/><polygon points="148,510 252,510 244,462 156,462"/><polygon points="156,462 244,462 236,418 164,418"/><polygon points="164,418 236,418 228,378 172,378"/><polygon points="172,378 228,378 220,344 180,344"/><polygon points="180,344 220,344 212,316 188,316"/><path d="M188 316q12-24 24 0z"/><rect x="60" y="540" width="280" height="30"/></g>
     <path d="M0 640Q100 600 200 630T400 610V800H0z" fill="#5a1740"/>
-    <g transform="translate(0 70)"><path d="M54 700V380Q54 150 200 150T346 380V700" fill="none" stroke="#4d7a2a" stroke-width="9" stroke-linecap="round"/><g id="archF"></g></g>
+    <g transform="translate(0 120)"><path d="M54 700V380Q54 150 200 150T346 380V700" fill="none" stroke="#4d7a2a" stroke-width="9" stroke-linecap="round"/><g id="archF"></g></g>
     <!-- couple -->
-    <svg x="52" y="320" width="296" height="335" viewBox="0 0 300 340" overflow="visible">
+    <svg x="52" y="372" width="296" height="335" viewBox="0 0 300 340" overflow="visible">
      <circle cx="150" cy="170" r="150" fill="url(#glow)" class="glowp"/>
      <ellipse cx="156" cy="330" rx="120" ry="9" fill="#2a0a1c" opacity=".35"/>
      <!-- GROOM -->
@@ -425,7 +425,7 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
   <svg class="toran" viewBox="0 0 400 74" aria-hidden="true" id="toran"><line x1="0" y1="7" x2="400" y2="7" stroke="#f0cf7d" stroke-width="3"/></svg>
   <div class="petals" id="petals" aria-hidden="true"></div>
 
-  <div class="copy" data-a="0" data-b=".15" data-top="24%">
+  <div class="copy" data-a="0" data-b=".15" data-top="20%">
     <p class="sacred"><span data-en>Sreerasthu · Shubhamasthu · Avighnamasthu</span><span data-te>శ్రీరస్తు · శుభమస్తు · అవిఘ్నమస్తు</span></p>
     <p class="tag"><span data-en>With the blessings of our elders</span><span data-te>పెద్దల ఆశీస్సులతో</span></p>
     <h1 class="names"><span data-en>Harshitha<i>weds</i>Pranideep</span><span data-te>హర్షిత<i>వివాహము</i>ప్రణీదీప్</span></h1>
@@ -440,10 +440,9 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
     <p class="sacred"><span data-en>Rooted in tradition</span><span data-te>సంప్రదాయపు వేర్లు</span></p>
     <h2 class="line" style="margin-top:12px"><span data-en>Kumkum, turmeric,<br><em>and a sacred thread.</em></span><span data-te>కుంకుమ, పసుపు,<br><em>మంగళసూత్రం.</em></span></h2>
   </div>
-  <div class="copy" data-top="28%">
-    <p class="sacred"><span data-en>Flowers, blessings &amp; new beginnings</span><span data-te>పూలు, ఆశీస్సులు, కొత్త ఆరంభాలు</span></p>
-    <h2 class="line" style="margin-top:12px"><span data-en>It was<br><em>always you.</em></span><span data-te>ఎప్పటికీ<br><em>నువ్వే.</em></span></h2>
-    <p class="script" style="font-size:clamp(26px,7.4vw,40px)"><span data-en>Two families. One beautiful story.</span><span data-te>రెండు కుటుంబాలు. ఒక అందమైన కథ.</span></p>
+  <div class="copy" data-top="19%">
+    <p class="sacred"><span data-en>Two families. One beautiful story.</span><span data-te>రెండు కుటుంబాలు. ఒక అందమైన కథ.</span></p>
+    <h2 class="line" style="margin-top:8px;font-size:clamp(36px,10.5vw,54px)"><span data-en>It was <em>always you.</em></span><span data-te>ఎప్పటికీ <em>నువ్వే.</em></span></h2>
   </div>
 
   <a class="open" href="#invitation"><span data-en>Open the invitation</span><span data-te>ఆహ్వానం చూడండి</span> <b>↓</b></a>
@@ -605,7 +604,7 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
   var pe=$('petals');for(i=0;i<20;i++){var pp=document.createElement('i');pp.className=i%4==0?'j':(i%4==1?'r':'');pp.style.left=(Math.random()*100)+'%';pp.style.animationDuration=(14+Math.random()*12)+'s';pp.style.animationDelay=(-Math.random()*18)+'s';pp.style.setProperty('--dx',(Math.random()*160-80)+'px');pp.style.setProperty('--r',(Math.random()*540)+'deg');pe.appendChild(pp)}
 
   /* autoplay story: change every 2 seconds */
-  var STEP=+((location.search.match(/step=(\d+)/)||[0,2000])[1]),scenes=['sA','sB','sC','sD'].map($),map=[0,1,2,3],dots=$('dots'),copies=[].slice.call(document.querySelectorAll('.copy')),cur=-1,timer=null,story=$('our-story');
+  var STEP=+((location.search.match(/step=(\d+)/)||[0,5000])[1]),scenes=['sA','sB','sC','sD'].map($),map=[0,1,2,3],dots=$('dots'),copies=[].slice.call(document.querySelectorAll('.copy')),cur=-1,timer=null,story=$('our-story');
   copies.forEach(function(c,n){c.style.top=c.getAttribute('data-top')||'32%';var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Scene '+(n+1));b.innerHTML='<i></i>';b.onclick=function(){go(n);restart()};dots.appendChild(b)});
   var prevS=null;
   function go(n){var ns=scenes[map[n]];
