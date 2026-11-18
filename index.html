@@ -12,7 +12,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%94%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Noto+Serif+Telugu:wght@400;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Telugu:wght@400;500;600&family=Noto+Serif+Telugu:wght@400;600;700&family=Parisienne&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 :root{--ivory:#fbf3e4;--paper:#fffaf0;--wine:#9b4f57;--ink:#5b4339;--gold:#b8925a;--gold-l:#f4dfb0;--muted:#9a8070;--line:#ead9b4;
   --serif:"Cormorant Garamond","Noto Serif Telugu",Georgia,serif;--script:"Pinyon Script","Noto Serif Telugu",cursive;--sans:"DM Sans","Noto Serif Telugu",sans-serif}
@@ -40,18 +40,31 @@ html[lang=te] .lang button{font-size:13px}
 html[lang=te] .short{letter-spacing:0;font-size:12px}
 
 /* story */
-.story{height:700vh;position:relative}
+.story{height:100vh;height:100svh;position:relative}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#5d3048}
-.scene{position:absolute;inset:0;will-change:opacity,transform}
+.scene{position:absolute;inset:0;opacity:0;transform:scale(1.09);transition:opacity 1s ease,transform 5s ease-out;will-change:opacity,transform}
+.scene.on{opacity:1;transform:scale(1)}
 .scene>svg{width:100%;height:100%;display:block}
 .vig{position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse at 50% 55%,transparent 40%,rgba(70,30,48,.32) 100%),linear-gradient(180deg,rgba(70,30,48,.3),transparent 30%,transparent 72%,rgba(70,30,48,.3))}
 .toran{position:absolute;z-index:4;top:0;left:0;width:100%;height:auto;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
+.open{position:absolute;z-index:6;left:50%;transform:translateX(-50%);bottom:max(58px,calc(env(safe-area-inset-bottom) + 40px));padding:12px 26px;border-radius:99px;background:rgba(255,248,238,.92);color:#9b4f57;font:italic 500 18px var(--serif);letter-spacing:.03em;box-shadow:0 8px 26px rgba(80,36,52,.3);white-space:nowrap}
+html[lang=te] .open{font-style:normal;font-size:15px;font-weight:600}
+.open b{display:inline-block;animation:bob 1.8s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
+.dots{position:absolute;z-index:6;left:0;right:0;bottom:max(26px,env(safe-area-inset-bottom));display:flex;gap:7px;justify-content:center}
+.dots button{width:30px;height:18px;border:0;background:none;cursor:pointer;position:relative}
+.dots button::before{content:"";position:absolute;left:0;right:0;top:8px;height:3px;border-radius:3px;background:rgba(255,243,214,.35)}
+.dots i{position:absolute;left:0;top:8px;height:3px;border-radius:3px;background:#fff3d6;width:0}
+.dots .done i{width:100%}
+.dots .now i{animation:fillb 2s linear forwards}
+@keyframes fillb{to{width:100%}}
+.copy.on{opacity:1;transform:none}
 .petals{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
 .petals i{position:absolute;top:-30px;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle,#ffd77a 30%,#f2a35a 100%);opacity:0;animation:fall linear infinite;filter:blur(.3px)}
 .petals i.j{width:8px;height:8px;background:#fffaf0;box-shadow:0 0 6px #fff}
 .petals i.r{width:11px;height:14px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,#ffd0d8,#e8506f)}
 @keyframes fall{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.8}100%{transform:translate(var(--dx),108vh) rotate(var(--r));opacity:.35}}
-.copy{position:absolute;z-index:5;left:0;right:0;top:32%;padding:0 46px;text-align:center;color:#fff3d6;opacity:0;pointer-events:none;will-change:opacity,transform;text-shadow:0 2px 22px rgba(80,36,52,.7),0 0 3px rgba(80,36,52,.35)}
+.copy{position:absolute;z-index:5;left:0;right:0;top:32%;padding:0 46px;text-align:center;color:#fff3d6;opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease;pointer-events:none;will-change:opacity,transform;text-shadow:0 2px 22px rgba(80,36,52,.7),0 0 3px rgba(80,36,52,.35)}
 .sacred{font:italic 500 19px/1.6 var(--serif);letter-spacing:.03em;color:var(--gold-l)}
 html[lang=te] .sacred{font-style:normal;letter-spacing:0;font-size:15px;font-weight:600}
 .tag{font:italic 400 19px var(--serif);margin:10px 0 14px;color:#ffe9b8}
@@ -66,11 +79,6 @@ html[lang=te] .line{font-size:clamp(26px,7.5vw,42px);line-height:1.5;letter-spac
 .odate{margin-top:20px;display:flex;gap:14px;justify-content:center;align-items:center;font:500 15px var(--serif);letter-spacing:.14em;color:#ffe9b8}
 html[lang=te] .odate{letter-spacing:0;font-size:14px}
 .odate b{color:var(--gold-l)}
-.hint{position:absolute;z-index:6;bottom:max(22px,env(safe-area-inset-bottom));left:0;right:0;text-align:center;font:italic 500 15px var(--serif);letter-spacing:.06em;color:var(--gold-l);transition:opacity .4s;text-shadow:0 1px 8px #000}
-html[lang=te] .hint{letter-spacing:0;font-size:12px}
-.hint::after{content:"";display:block;width:1px;height:30px;margin:8px auto 0;background:linear-gradient(var(--gold-l),transparent);animation:drip 1.8s infinite}
-@keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-.count{position:absolute;z-index:6;left:18px;bottom:max(22px,env(safe-area-inset-bottom));font:500 10px var(--sans);letter-spacing:.2em;color:var(--gold-l);text-shadow:0 1px 6px #000}
 
 /* svg anim */
 .tw{animation:tw 3s ease-in-out infinite}
@@ -95,67 +103,84 @@ html[lang=te] .hint{letter-spacing:0;font-size:12px}
 .shim{animation:shim 2.6s ease-in-out infinite}
 @keyframes shim{50%{opacity:.55;filter:brightness(1.4)}}
 
-/* invitation */
-.sec{padding:84px 22px;max-width:620px;margin:0 auto;text-align:center}
-.eyebrow{font:italic 500 17px/1.7 var(--serif);letter-spacing:.03em;color:var(--muted)}
-html[lang=te] .eyebrow{font-style:normal;letter-spacing:0;font-size:14px}
-h2{font:400 clamp(36px,10vw,56px)/1.1 var(--serif);letter-spacing:-1px;margin-top:12px}
-html[lang=te] h2{font-size:clamp(26px,7vw,38px);letter-spacing:0;line-height:1.5}
-h2 em{color:var(--wine);font-weight:400}
-.orn{display:block;width:230px;height:34px;margin:0 auto 14px;color:var(--gold)}
-.sri{font:600 15px var(--serif);color:var(--wine);letter-spacing:.04em;margin-bottom:10px}
-html[lang=te] .sri{font-size:17px}
-.big{font:400 clamp(52px,16vw,84px)/1 var(--script);color:var(--wine);margin:18px 0 2px}
-html[lang=te] .big{font:700 clamp(34px,10vw,48px)/1.4 var(--serif)}
-.amp{font:36px var(--script);color:var(--gold)}
-.para{margin:22px auto 0;font:400 20px/1.7 var(--serif);color:var(--ink);max-width:480px}
-html[lang=te] .para{font-size:16px}
-.date{margin-top:30px;border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:22px 0;position:relative}
-.date .dd{display:flex;justify-content:center;align-items:center;gap:18px}
-.date .n{font:400 78px/1 var(--serif);color:var(--wine)}
-.date .m{text-align:left;font:500 11px/1.9 var(--sans);letter-spacing:.26em;color:var(--muted)}
-html[lang=te] .date .m{letter-spacing:0;font-size:14px}
-.date .t{margin-top:10px;font:italic 400 26px var(--serif);color:var(--gold)}
-html[lang=te] .date .t{font-style:normal;font-size:20px}
-.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:22px}
-.cd div{border:1px solid var(--line);background:var(--paper);padding:12px 2px;border-radius:16px}
-.cd b{display:block;font:400 34px/1.1 var(--serif);color:var(--wine);font-variant-numeric:tabular-nums}
-.cd span{font:500 10px var(--sans);letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
-html[lang=te] .cd span{letter-spacing:0;font-size:11px;text-transform:none}
-.card{background:var(--paper);border:1px solid var(--line);margin-top:24px;padding:38px 20px 30px;position:relative;border-radius:22px;box-shadow:0 10px 30px rgba(155,79,87,.10)}
-.card::before{content:"";position:absolute;inset:7px;border:1px dashed var(--line);border-radius:16px;pointer-events:none}
-.card .corner{position:absolute;width:26px;height:26px;color:var(--gold)}
-.card .c1{top:-2px;left:-2px}.card .c2{top:-2px;right:-2px;transform:scaleX(-1)}.card .c3{bottom:-2px;left:-2px;transform:scaleY(-1)}.card .c4{bottom:-2px;right:-2px;transform:scale(-1)}
-.card h3{font:400 30px/1.15 var(--serif);color:var(--wine);margin-top:8px}
-html[lang=te] .card h3{font-size:22px;line-height:1.5}
-.card .when{margin-top:14px;font:italic 500 18px var(--serif);letter-spacing:.03em;color:var(--muted)}
-html[lang=te] .card .when{font-style:normal;letter-spacing:0;font-size:15px}
-.card .time{font:400 44px/1.1 var(--serif);color:var(--gold);margin:4px 0}
-html[lang=te] .card .time{font-size:30px}
-.card .sub{font:italic 400 18px var(--serif);color:var(--muted)}
-html[lang=te] .card .sub{font-style:normal;font-size:15px}
-.card .where{margin-top:18px;padding-top:18px;border-top:1px dashed var(--gold)}
-.card .where strong{display:block;font:500 24px var(--serif);color:var(--ink)}
-html[lang=te] .card .where strong{font-size:18px}
-.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 24px;border:1.5px solid var(--wine);color:var(--wine);font:500 13px var(--sans);letter-spacing:.06em;background:transparent;cursor:pointer;border-radius:99px}
-html[lang=te] .btn{letter-spacing:0;text-transform:none;font-size:14px}
-.btn.fill{background:var(--wine);color:#fff3d6}
+/* invitation: blush, sage & gold */
+#invitation{--rose:#c4707c;--rose-d:#a4545f;--blush:#f9e6e3;--sage:#7f9b87;--sage-d:#47624f;--gi:#c4a265;--ink2:#4d3c3c;--mut:#8f7a78;
+  --h:"Playfair Display","Noto Serif Telugu",Georgia,serif;--b:"Lora","Noto Sans Telugu",Georgia,serif;--sc:"Parisienne","Noto Serif Telugu",cursive;
+  background:#fdf7f1;color:var(--ink2);font-family:var(--b);position:relative;overflow:hidden}
+html[lang=te] #invitation{--b:"Noto Sans Telugu",sans-serif;--h:"Noto Serif Telugu",serif;--sc:"Noto Serif Telugu",serif}
+#invitation::before,#invitation::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(40px);z-index:0;pointer-events:none}
+#invitation::before{top:-100px;left:-160px;background:radial-gradient(circle,#f7d9d8,transparent 70%)}
+#invitation::after{top:900px;right:-200px;background:radial-gradient(circle,#dbe8dc,transparent 70%)}
+.sec{padding:78px 24px;max-width:600px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.sprig{display:block;width:210px;height:42px;margin:0 auto 18px;color:var(--sage)}
+.sri{font:italic 500 18px var(--h);color:var(--rose-d);margin-bottom:6px}
+html[lang=te] .sri{font-style:normal;font-size:17px}
+.kick{font:italic 400 17px var(--b);color:var(--mut)}
+html[lang=te] .kick{font-style:normal;font-size:14px}
+h2{font:400 clamp(44px,13vw,66px)/1.15 var(--sc);color:var(--rose);margin:6px 0 4px;letter-spacing:0}
+html[lang=te] h2{font:700 clamp(26px,7.5vw,36px)/1.5 var(--h)}
+h2 em{font-style:normal;color:var(--sage-d)}
+.nm{font:400 clamp(54px,17vw,86px)/1.05 var(--sc);color:var(--rose-d);margin-top:8px}
+html[lang=te] .nm{font:700 clamp(34px,10vw,46px)/1.4 var(--h)}
+.wd{font:italic 400 20px var(--h);color:var(--gi);letter-spacing:.14em;margin:2px 0}
+html[lang=te] .wd{font-style:normal;font-size:17px;letter-spacing:0}
+.job{font:italic 400 16px var(--b);color:var(--mut);margin-top:10px;letter-spacing:.04em}
+html[lang=te] .job{font-style:normal;font-size:14px}
+.para{margin:24px auto 0;font:400 17px/1.95 var(--b);color:var(--ink2);max-width:470px}
+html[lang=te] .para{font-size:15px;line-height:2}
+.wreathbox{position:relative;width:300px;height:300px;margin:0 auto}
+.wreathbox svg{position:absolute;inset:0;width:100%;height:100%}
+.wreathbox .in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
+.wreathbox small{font:italic 400 16px var(--b);color:var(--mut)}
+.wreathbox .n{font:400 84px/1 var(--h);color:var(--rose-d)}
+.wreathbox .mo{font:500 13px var(--h);letter-spacing:.16em;color:var(--sage-d);text-transform:uppercase;margin-top:-2px}
+.wreathbox .tm{font:italic 400 15px var(--h);color:var(--gi);margin-top:6px}
+html[lang=te] .wreathbox small,html[lang=te] .wreathbox .tm{font-style:normal;font-size:14px}
+html[lang=te] .wreathbox .mo{letter-spacing:0;text-transform:none;font-size:15px}
+.cd{display:flex;gap:10px;justify-content:center;margin-top:26px}
+.cd div{width:74px;height:74px;border-radius:50%;background:#fff;border:1px solid #efd4d2;box-shadow:0 8px 22px rgba(196,112,124,.12);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cd b{font:500 24px/1.1 var(--h);color:var(--rose-d);font-variant-numeric:tabular-nums}
+.cd span{font:italic 400 11px var(--b);color:var(--mut)}
+html[lang=te] .cd span{font-style:normal;font-size:10px}
+.arch{background:#fff;border:1px solid #efd4d2;border-radius:220px 220px 28px 28px;padding:84px 22px 32px;margin-top:34px;position:relative;box-shadow:0 16px 40px rgba(196,112,124,.14)}
+.arch::before{content:"";position:absolute;inset:8px;border:1px dashed #e7c9c6;border-radius:212px 212px 20px 20px;pointer-events:none}
+.arch .ic{position:absolute;top:22px;left:50%;transform:translateX(-50%);width:64px;height:64px}
+.arch .kick{margin-bottom:2px}
+.arch h3{font:500 29px/1.25 var(--h);color:var(--rose-d)}
+html[lang=te] .arch h3{font-size:21px;line-height:1.55}
+.arch .when{margin-top:14px;font:italic 400 18px var(--b);color:var(--mut)}
+.arch .time{font:500 46px/1.15 var(--h);color:var(--sage-d);margin:2px 0}
+html[lang=te] .arch .when{font-style:normal;font-size:15px}
+html[lang=te] .arch .time{font-size:32px}
+.arch .sub{font:italic 400 16px var(--b);color:var(--mut)}
+html[lang=te] .arch .sub{font-style:normal;font-size:14px}
+.arch .where{margin-top:20px;padding-top:18px;border-top:1px solid #f0dad8}
+.arch .where strong{display:block;font:500 22px/1.3 var(--h);color:var(--ink2);margin-bottom:2px}
+html[lang=te] .arch .where strong{font-size:17px}
+.btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 24px;border-radius:99px;border:1.5px solid var(--rose);color:var(--rose-d);font:500 14px var(--b);letter-spacing:.03em;background:transparent;cursor:pointer}
+.btn.fill{background:var(--rose);color:#fff;border-color:var(--rose);box-shadow:0 8px 20px rgba(196,112,124,.3)}
 .btn:active{transform:scale(.97)}
-.fam{font:500 24px/1.35 var(--serif);color:var(--wine);margin-top:10px}
-html[lang=te] .fam{font-size:19px;line-height:1.7}
-.contact{background:#6e4050;color:#f8e6c4;max-width:none}
-.contact>div{max-width:620px;margin:0 auto}
-.contact h2{color:#fff3d6}.contact h2 em{color:var(--gold-l)}
-.contact .eyebrow{color:var(--gold-l)}
-.contact .orn{color:var(--gold-l)}
+.lbl{font:italic 400 17px var(--b);color:var(--mut)}
+html[lang=te] .lbl{font-style:normal;font-size:14px}
+.fam{font:italic 500 24px/1.4 var(--h);color:var(--rose-d);margin-top:10px}
+html[lang=te] .fam{font-style:normal;font-size:19px;line-height:1.7}
+.contact{background:var(--sage-d);color:#f4efe6;max-width:none;position:relative;z-index:1}
+.contact>div{max-width:600px;margin:0 auto}
+.contact .sprig{color:#cfe0d2}
+.contact .kick{color:#cfe0d2}
+.contact h2{color:#f6dcc0}
 .contact .btns{flex-direction:column;align-items:center}
-.contact .btn{width:100%;max-width:320px;border-color:var(--gold-l);color:#fff3d6;font-size:15px;letter-spacing:.12em}
-.contact address{font-style:normal;margin-top:26px;font:400 18px/1.6 var(--serif);color:#ecd6aa}
-.back{display:block;margin:0 auto;padding:26px 0 calc(34px + env(safe-area-inset-bottom));font:500 10px var(--sans);letter-spacing:.3em;color:var(--muted);text-align:center;background:var(--ivory)}
+.contact .btn{width:100%;max-width:300px;border-color:#cfe0d2;color:#f4efe6;font-size:17px}
+.contact .btn.fill{background:#f6dcc0;color:var(--sage-d);border-color:#f6dcc0;box-shadow:none}
+.contact address{font:italic 400 17px/1.8 var(--b);margin-top:28px;color:#dfe9e0;font-style:italic}
+html[lang=te] .contact address{font-style:normal;font-size:15px}
+.back{display:block;margin:0 auto;padding:30px 0 calc(36px + env(safe-area-inset-bottom));font:italic 400 17px var(--h);color:var(--rose-d);text-align:center;background:#fdf7f1}
+.back .sc{display:block;font:400 34px var(--sc);color:var(--rose);margin-bottom:6px}
+html[lang=te] .back .sc{font:700 20px var(--h)}
 .fade{opacity:0;transform:translateY(16px);transition:opacity 1.3s ease,transform 1.3s ease}
 .fade.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){*{animation:none!important}.fade{opacity:1;transform:none;transition:none}}
+@media (prefers-reduced-motion:reduce){.scene{transition:opacity 1s}.open b{animation:none}.fade{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
@@ -173,6 +198,7 @@ html[lang=te] .fam{font-size:19px;line-height:1.7}
   <g id="lotus"><path d="M0 0C-14-14-14-34 0-48C14-34 14-14 0 0Z" fill="#f7a8bb"/><path d="M0 0C-26-6-40-26-34-40C-16-36-4-20 0 0Z" fill="#f48aa5"/><path d="M0 0C26-6 40-26 34-40C16-36 4-20 0 0Z" fill="#f48aa5"/><path d="M0 0C-38 6-58-8-60-22C-40-26-14-18 0 0Z" fill="#e9668a"/><path d="M0 0C38 6 58-8 60-22C40-26 14-18 0 0Z" fill="#e9668a"/></g>
   <g id="paisley"><path d="M0 0C-14-4-16-22-6-30C4-38 16-30 14-18C12-8 4-2 0 0Z" fill="currentColor"/><circle cx="4" cy="-20" r="3" fill="#4a0b16" opacity=".5"/></g>
   <symbol id="ornament" viewBox="0 0 230 34"><g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 17H92M138 17H220"/></g><g fill="currentColor"><path d="M115 4l8 13-8 13-8-13z"/><circle cx="98" cy="17" r="3"/><circle cx="132" cy="17" r="3"/><circle cx="84" cy="17" r="2"/><circle cx="146" cy="17" r="2"/><path d="M10 17l6-5v10zM220 17l-6-5v10z"/></g></symbol>
+  <symbol id="sprig" viewBox="0 0 210 42"><g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 21H92M118 21H202"/></g><g fill="currentColor" opacity=".85"><ellipse cx="30" cy="14" rx="9" ry="3.6" transform="rotate(-28 30 14)"/><ellipse cx="30" cy="28" rx="9" ry="3.6" transform="rotate(28 30 28)"/><ellipse cx="54" cy="14" rx="9" ry="3.6" transform="rotate(-28 54 14)"/><ellipse cx="54" cy="28" rx="9" ry="3.6" transform="rotate(28 54 28)"/><ellipse cx="78" cy="14" rx="9" ry="3.6" transform="rotate(-28 78 14)"/><ellipse cx="78" cy="28" rx="9" ry="3.6" transform="rotate(28 78 28)"/><ellipse cx="132" cy="14" rx="9" ry="3.6" transform="rotate(28 132 14)"/><ellipse cx="132" cy="28" rx="9" ry="3.6" transform="rotate(-28 132 28)"/><ellipse cx="156" cy="14" rx="9" ry="3.6" transform="rotate(28 156 14)"/><ellipse cx="156" cy="28" rx="9" ry="3.6" transform="rotate(-28 156 28)"/><ellipse cx="180" cy="14" rx="9" ry="3.6" transform="rotate(28 180 14)"/><ellipse cx="180" cy="28" rx="9" ry="3.6" transform="rotate(-28 180 28)"/></g><g><circle cx="105" cy="21" r="5" fill="#c4707c"/><circle cx="105" cy="13" r="4.4" fill="#e8a0a8"/><circle cx="105" cy="29" r="4.4" fill="#e8a0a8"/><circle cx="97" cy="21" r="4.4" fill="#e8a0a8"/><circle cx="113" cy="21" r="4.4" fill="#e8a0a8"/><circle cx="105" cy="21" r="2.4" fill="#f6d27a"/></g></symbol>
   <symbol id="corner" viewBox="0 0 26 26"><path d="M2 24V8Q2 2 8 2H24" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="8" r="3" fill="currentColor"/></symbol>
 </defs></svg>
 
@@ -241,7 +267,7 @@ html[lang=te] .fam{font-size:19px;line-height:1.7}
   </div>
 
   <!-- B: Mandap -->
-  <div class="scene" id="sB" style="opacity:0">
+  <div class="scene" id="sB">
    <svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
     <defs>
      <linearGradient id="bgB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b3047"/><stop offset=".55" stop-color="#b0647a"/><stop offset="1" stop-color="#eeb48a"/></linearGradient>
@@ -281,7 +307,7 @@ html[lang=te] .fam{font-size:19px;line-height:1.7}
   </div>
 
   <!-- C: pelli samagri -->
-  <div class="scene" id="sC" style="opacity:0">
+  <div class="scene" id="sC">
    <svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
     <defs>
      <linearGradient id="bgC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a3552"/><stop offset=".5" stop-color="#a85c70"/><stop offset="1" stop-color="#5a2c47"/></linearGradient>
@@ -315,7 +341,7 @@ html[lang=te] .fam{font-size:19px;line-height:1.7}
   </div>
 
   <!-- D: couple -->
-  <div class="scene" id="sD" style="opacity:0">
+  <div class="scene" id="sD">
    <svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
     <defs>
      <linearGradient id="skyD" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3a6a"/><stop offset=".3" stop-color="#d4789a"/><stop offset=".58" stop-color="#f6a88a"/><stop offset="1" stop-color="#ffd58a"/></linearGradient>
@@ -418,43 +444,50 @@ html[lang=te] .fam{font-size:19px;line-height:1.7}
     <p class="script" style="font-size:clamp(28px,8vw,44px)"><span data-en>Two families. One beautiful story.</span><span data-te>రెండు కుటుంబాలు. ఒక అందమైన కథ.</span></p>
   </div>
 
-  <div class="hint" id="hint"><span data-en>SCROLL SLOWLY. LET THE STORY UNFOLD.</span><span data-te>మెల్లగా స్క్రోల్ చేయండి</span></div>
-  <div class="count" id="cnt">01 / 05</div>
+  <a class="open" href="#invitation"><span data-en>Open the invitation</span><span data-te>ఆహ్వానం చూడండి</span> <b>↓</b></a>
+  <div class="dots" id="dots" aria-hidden="true"></div>
  </div>
 </section>
 
 <section id="invitation">
  <div class="sec fade">
-  <svg class="orn"><use href="#ornament"/></svg>
+  <svg class="sprig"><use href="#sprig"/></svg>
   <p class="sri"><span data-en>|| Sri Ganeshaya Namaha ||</span><span data-te>|| శ్రీ గణేశాయ నమః ||</span></p>
-  <p class="eyebrow"><span data-en>Together with our families</span><span data-te>కుటుంబ సభ్యులతో కలిసి</span></p>
-  <h2><span data-en>Wedding <em>Invitation</em></span><span data-te>వివాహ <em>ఆహ్వాన శుభపత్రిక</em></span></h2>
-  <p class="big"><span data-en>Harshitha</span><span data-te>చి॥ల॥సౌ॥ హర్షిత</span></p>
-  <p class="amp"><span data-en>with</span><span data-te>వివాహము</span></p>
-  <p class="big"><span data-en>Pranideep</span><span data-te>చి॥ ప్రణీదీప్</span></p>
-  <p class="eyebrow" style="margin-top:8px"><span data-en>Interior Designer · Software Engineer</span><span data-te>ఇంటీరియర్ డిజైనర్ · సాఫ్ట్‌వేర్ ఇంజనీర్</span></p>
+  <p class="kick"><span data-en>Together with their families</span><span data-te>కుటుంబ సభ్యులతో కలిసి</span></p>
+  <h2><span data-en>Wedding Invitation</span><span data-te>వివాహ ఆహ్వాన శుభపత్రిక</span></h2>
+  <p class="nm"><span data-en>Harshitha</span><span data-te>చి॥ల॥సౌ॥ హర్షిత</span></p>
+  <p class="wd"><span data-en>~ weds ~</span><span data-te>~ వివాహము ~</span></p>
+  <p class="nm"><span data-en>Pranideep</span><span data-te>చి॥ ప్రణీదీప్</span></p>
+  <p class="job"><span data-en>Interior Designer &nbsp;·&nbsp; Software Engineer</span><span data-te>ఇంటీరియర్ డిజైనర్ · సాఫ్ట్‌వేర్ ఇంజనీర్</span></p>
   <p class="para"><span data-en>We solicit your gracious presence with family and friends on the auspicious occasion of the marriage of our elder daughter. Pranideep is the elder son of Smt &amp; Sri Alampalli Praveena – Suresh.</span><span data-te>మా ప్రథమ పుత్రిక వివాహ శుభ సందర్భంగా మీరు సకుటుంబ సమేతంగా విచ్చేసి నూతన వధూవరులను ఆశీర్వదించి, భోజన తాంబూలాదులను స్వీకరించి మమ్మల్ని ఆనందింపచేయగలరని కోరుచున్నాము. (శ్రీమతి &amp; శ్రీ ఆలంపల్లి ప్రవీణ – సురేష్ గార్ల ప్రథమ పుత్రుడు)</span></p>
-  <div class="date">
-    <p class="eyebrow"><span data-en>Save this auspicious day</span><span data-te>ఈ శుభదినాన్ని గుర్తుంచుకోండి</span></p>
-    <div class="dd"><span class="n">03</span><span class="m"><span data-en>THURSDAY<br>DECEMBER<br>2026</span><span data-te>గురువారం<br>డిసెంబర్<br>2026</span></span></div>
-    <p class="t"><span data-en>at 8:56 AM · Dhanur Lagnam</span><span data-te>ఉదయం 8:56 · ధనుర్ లగ్నం</span></p>
+ </div>
+
+ <div class="sec fade" style="padding-top:10px">
+  <div class="wreathbox">
+   <svg viewBox="0 0 300 300" id="wreath" aria-hidden="true"></svg>
+   <div class="in">
+    <small><span data-en>Thursday</span><span data-te>గురువారం</span></small>
+    <div class="n">03</div>
+    <div class="mo"><span data-en>December 2026</span><span data-te>డిసెంబర్ 2026</span></div>
+    <div class="tm"><span data-en>8:56 AM · Dhanur Lagnam</span><span data-te>ఉ. 8:56 · ధనుర్ లగ్నం</span></div>
+   </div>
   </div>
   <div class="cd" id="cd">
-    <div><b id="d">--</b><span data-en>Days</span><span data-te>రోజులు</span></div>
-    <div><b id="h">--</b><span data-en>Hours</span><span data-te>గంటలు</span></div>
-    <div><b id="m">--</b><span data-en>Mins</span><span data-te>నిమిషాలు</span></div>
-    <div><b id="s">--</b><span data-en>Secs</span><span data-te>సెకన్లు</span></div>
+    <div><b id="d">--</b><span data-en>days</span><span data-te>రోజులు</span></div>
+    <div><b id="h">--</b><span data-en>hours</span><span data-te>గంటలు</span></div>
+    <div><b id="m">--</b><span data-en>mins</span><span data-te>నిమి</span></div>
+    <div><b id="s">--</b><span data-en>secs</span><span data-te>సెక</span></div>
   </div>
  </div>
 
- <div class="sec fade" style="padding-top:20px">
-  <svg class="orn"><use href="#ornament"/></svg>
-  <p class="eyebrow"><span data-en>With open hearts, we invite you</span><span data-te>ఆనందంగా మిమ్మల్ని ఆహ్వానిస్తున్నాము</span></p>
-  <h2><span data-en>Come for the celebration. <em>Stay in our story.</em></span><span data-te>వేడుకకు రండి. <em>మా కథలో భాగమవ్వండి.</em></span></h2>
+ <div class="sec fade" style="padding-top:10px">
+  <svg class="sprig"><use href="#sprig"/></svg>
+  <p class="kick"><span data-en>With open hearts, we invite you</span><span data-te>ఆనందంగా మిమ్మల్ని ఆహ్వానిస్తున్నాము</span></p>
+  <h2><span data-en>The Celebrations</span><span data-te>వేడుకలు</span></h2>
 
-  <article class="card">
-    <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg><svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-    <p class="eyebrow"><span data-en>Sumuhurtham</span><span data-te>సుముహూర్తం</span></p>
+  <article class="arch">
+    <svg class="ic" viewBox="-44 -104 88 170"><use href="#kalash"/></svg>
+    <p class="kick"><span data-en>Sumuhurtham</span><span data-te>సుముహూర్తం</span></p>
     <h3><span data-en>The Wedding</span><span data-te>వివాహ వేడుక</span></h3>
     <p class="when"><span data-en>Thursday · 3rd December 2026</span><span data-te>గురువారం · 3-12-2026</span></p>
     <p class="time"><span data-en>8:56 AM</span><span data-te>ఉ. 8:56</span></p>
@@ -466,9 +499,9 @@ html[lang=te] .fam{font-size:19px;line-height:1.7}
     </div>
   </article>
 
-  <article class="card">
-    <svg class="corner c1"><use href="#corner"/></svg><svg class="corner c2"><use href="#corner"/></svg><svg class="corner c3"><use href="#corner"/></svg><svg class="corner c4"><use href="#corner"/></svg>
-    <p class="eyebrow"><span data-en>Pooja</span><span data-te>పూజ</span></p>
+  <article class="arch">
+    <svg class="ic" viewBox="0 0 60 70"><use href="#diya"/></svg>
+    <p class="kick"><span data-en>Pooja</span><span data-te>పూజ</span></p>
     <h3><span data-en>Satyanarayana Swamy Vratham</span><span data-te>సత్యనారాయణ స్వామి వ్రతం</span></h3>
     <p class="when"><span data-en>Saturday · 5th December 2026</span><span data-te>శనివారం · 5-12-2026</span></p>
     <p class="time"><span data-en>10:30 AM</span><span data-te>ఉ. 10:30</span></p>
@@ -482,31 +515,31 @@ html[lang=te] .fam{font-size:19px;line-height:1.7}
  </div>
 
  <div class="sec fade" style="padding-top:20px">
-  <svg class="orn"><use href="#ornament"/></svg>
-  <p class="eyebrow"><span data-en>With love, invited by</span><span data-te>ఆహ్వానించువారు</span></p>
+  <svg class="sprig"><use href="#sprig"/></svg>
+  <p class="lbl"><span data-en>With love, invited by</span><span data-te>ఆహ్వానించువారు</span></p>
   <p class="fam"><span data-en>Smt &amp; Sri Somishetty Pavithra – Aravind Gupta</span><span data-te>శ్రీమతి &amp; శ్రీ సోమిశెట్టి పవిత్ర – అరవింద్ గుప్తా</span></p>
   <p class="fam"><span data-en>Smt &amp; Sri Somishetty Veena – Venkatesh Gupta</span><span data-te>శ్రీమతి &amp; శ్రీ సోమిశెట్టి వీణ – వెంకటేశ్వర్లు</span></p>
-  <p class="para" style="font-size:18px"><span data-en>With the blessings of Late Sri Somishetty Ramulu Gupta</span><span data-te>కీ॥శే॥ సోమిశెట్టి రాములు గుప్తా గారి ఆశీస్సులతో…</span></p>
-  <p class="para" style="font-size:17px;margin-top:30px;color:var(--muted)"><span data-en>With best compliments from near &amp; dear — Kanduru Saroja – Venkat Setty, Ravi Kumar, Rajesh &amp; family</span><span data-te>బంధుమిత్రుల అభినందనలతో — కందూరు సరోజ – వెంకట్ సెట్టి, రవి కుమార్, రాజేష్ మరియు బంధుమిత్రులు</span></p>
+  <p class="para" style="font-size:16px"><span data-en>With the blessings of Late Sri Somishetty Ramulu Gupta</span><span data-te>కీ॥శే॥ సోమిశెట్టి రాములు గుప్తా గారి ఆశీస్సులతో…</span></p>
+  <p class="para" style="font-size:15px;margin-top:26px;color:var(--mut)"><span data-en>With best compliments from near &amp; dear — Kanduru Saroja – Venkat Setty, Ravi Kumar, Rajesh &amp; family</span><span data-te>బంధుమిత్రుల అభినందనలతో — కందూరు సరోజ – వెంకట్ సెట్టి, రవి కుమార్, రాజేష్ మరియు బంధుమిత్రులు</span></p>
  </div>
 
  <div class="sec contact fade">
   <div>
-   <svg class="orn"><use href="#ornament"/></svg>
-   <p class="eyebrow"><span data-en>Your presence is our most cherished blessing</span><span data-te>మీ రాక మాకు అత్యంత ఆనందం</span></p>
-   <h2><span data-en>Get in <em>touch</em></span><span data-te>సంప్రదించండి</span></h2>
+   <svg class="sprig"><use href="#sprig"/></svg>
+   <p class="kick"><span data-en>Your presence is our most cherished blessing</span><span data-te>మీ రాక మాకు అత్యంత ఆనందం</span></p>
+   <h2><span data-en>Get in touch</span><span data-te>సంప్రదించండి</span></h2>
    <div class="btns" style="margin-top:26px">
      <a class="btn" href="tel:+919866304470">📞 98663 04470</a>
      <a class="btn" href="tel:+918519955172">📞 85199 55172</a>
      <a class="btn" href="tel:+916281324411">📞 62813 24411</a>
-     <a class="btn" id="share" href="#" style="margin-top:12px"><span data-en>Share invitation</span><span data-te>షేర్ చేయండి</span></a>
+     <a class="btn fill" id="share" href="#" style="margin-top:12px"><span data-en>Share invitation</span><span data-te>షేర్ చేయండి</span></a>
    </div>
    <address><span data-en>H.No. 07-012-A/350, beside Sai Baba Temple,<br>Bhagyalaxmi Colony, Suchitra Road, Kuthbullapur,<br>Hyderabad – 500055</span><span data-te>ఇ.నెం. 07-012-ఎ/350, సాయిబాబా టెంపుల్ పక్కన,<br>భాగ్యలక్ష్మి కాలని, సుచిత్ర రోడ్, కుత్బుల్లాపూర్,<br>హైదరాబాద్ – 55</span></address>
   </div>
  </div>
 </section>
 </main>
-<a class="back" href="#our-story"><span data-en>BACK TO THE BEGINNING ↑</span><span data-te>మొదటికి వెళ్ళండి ↑</span></a>
+<a class="back" href="#our-story"><span class="sc"><span data-en>With love, Harshitha &amp; Pranideep</span><span data-te>ప్రేమతో, హర్షిత &amp; ప్రణీదీప్</span></span><span data-en>Back to the beginning ↑</span><span data-te>మొదటికి వెళ్ళండి ↑</span></a>
 
 <script>
 (function(){
@@ -568,27 +601,27 @@ html[lang=te] .fam{font-size:19px;line-height:1.7}
   /* falling petals */
   var pe=$('petals');for(i=0;i<20;i++){var pp=document.createElement('i');pp.className=i%4==0?'j':(i%4==1?'r':'');pp.style.left=(Math.random()*100)+'%';pp.style.animationDuration=(14+Math.random()*12)+'s';pp.style.animationDelay=(-Math.random()*18)+'s';pp.style.setProperty('--dx',(Math.random()*160-80)+'px');pp.style.setProperty('--r',(Math.random()*540)+'deg');pe.appendChild(pp)}
 
-  /* scroll */
-  var story=$('our-story'),sc4=['sA','sB','sC','sD'].map($),prog=$('prog'),cnt=$('cnt'),hint=$('hint'),copies=[].slice.call(document.querySelectorAll('.copy'));
-  copies.forEach(function(c){c.style.top=c.getAttribute('data-top')||'32%'});
-  function clamp(v){return Math.max(0,Math.min(1,v))}
-  function ramp(p,a,b){return clamp((p-a)/(b-a))}
-  var raf=0;
-  function frame(){
-    raf=0;
-    var r=story.getBoundingClientRect(),H=innerHeight,p=clamp(-r.top/(r.height-H));
-    prog.style.transform='scaleX('+clamp(scrollY/(document.documentElement.scrollHeight-H))+')';
-    if(r.bottom<-50||r.top>H)return;
-    var o=[1-ramp(p,.15,.25),Math.min(ramp(p,.15,.25),1-ramp(p,.38,.48)),Math.min(ramp(p,.38,.48),1-ramp(p,.6,.7)),ramp(p,.6,.7)];
-    var s0=[0,.15,.38,.6];
-    sc4.forEach(function(e,n){e.style.opacity=o[n];e.style.transform='scale('+(1+0.1*(1-clamp((p-s0[n])/.3)))+')';e.style.visibility=o[n]>0?'visible':'hidden'});
-    var idx=0;
-    copies.forEach(function(c,n){var a=+c.getAttribute('data-a'),b=+c.getAttribute('data-b'),op=Math.min(ramp(p,a,a+.045),1-ramp(p,b-.045,b));
-      if(n===0&&p<.02)op=1;c.style.opacity=op;var dy=(p<(a+b)/2?1:-1)*(1-op)*28;c.style.transform='translateY('+dy+'px)';if(op>.5)idx=n});
-    cnt.textContent='0'+(idx+1)+' / 05';hint.style.opacity=p<.04?1:0;
-  }
-  function req(){if(!raf)raf=requestAnimationFrame(frame)}
-  addEventListener('scroll',req,{passive:true});addEventListener('resize',req);
+  /* autoplay story: change every 2 seconds */
+  var STEP=+((location.search.match(/step=(\d+)/)||[0,2000])[1]),scenes=['sA','sB','sC','sD'].map($),map=[0,1,2,3,3],dots=$('dots'),copies=[].slice.call(document.querySelectorAll('.copy')),cur=-1,timer=null,story=$('our-story');
+  copies.forEach(function(c,n){c.style.top=c.getAttribute('data-top')||'32%';var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Scene '+(n+1));b.innerHTML='<i></i>';b.onclick=function(){go(n);restart()};dots.appendChild(b)});
+  function go(n){cur=n;scenes.forEach(function(e,i){e.classList.toggle('on',i===map[n])});copies.forEach(function(c,i){c.classList.toggle('on',i===n)});
+    [].forEach.call(dots.children,function(b,i){b.className=i<n?'done':(i===n?'now':'');if(i===n){var f=b.firstChild;f.style.animation='none';void f.offsetWidth;f.style.animation=''}})}
+  function next(){go((cur+1)%copies.length)}
+  function stop(){clearInterval(timer);timer=null}
+  function restart(){stop();timer=setInterval(next,STEP)}
+  go(0);restart();
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){if(es[0].isIntersecting){if(!timer)restart()}else stop()},{threshold:.15}).observe(story)}
+  document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else restart()});
+
+  /* floral wreath around the date */
+  var wr=$('wreath'),lc=['#7f9b87','#97b09e','#6a8873'],fc=['#e8a0a8','#f3c3c5','#f6d27a'];
+  for(i=0;i<40;i++){var an=i/40*Math.PI*2,x0=150+128*Math.cos(an),y0=150+128*Math.sin(an),deg=an*180/Math.PI;
+    var lf=mk('g',{transform:'translate('+x0+' '+y0+') rotate('+(deg+90+(i%2?35:-35))+')'},wr);mk('ellipse',{cx:0,cy:-10,rx:5.5,ry:14,fill:lc[i%3],opacity:.95},lf)}
+  for(i=0;i<20;i++){var an2=(i+.5)/20*Math.PI*2,x1=150+128*Math.cos(an2),y1=150+128*Math.sin(an2),fg=mk('g',{transform:'translate('+x1+' '+y1+')'},wr);
+    for(var q=0;q<5;q++)mk('ellipse',{cx:0,cy:-6,rx:3.6,ry:6,fill:fc[i%3],transform:'rotate('+(q*72)+')'},fg);mk('circle',{r:2.6,fill:'#f6d27a'},fg)}
+  mk('ellipse',{cx:150,cy:150,rx:112,ry:112,fill:'none',stroke:'#c4a265','stroke-width':1,'stroke-dasharray':'2 5'},wr);
+
+  addEventListener('scroll',function(){var d=document.documentElement;$('prog').style.transform='scaleX('+Math.min(1,scrollY/Math.max(1,d.scrollHeight-innerHeight))+')'},{passive:true});
 
   /* countdown */
   var target=new Date('2026-12-03T08:56:00+05:30').getTime();
@@ -600,7 +633,6 @@ html[lang=te] .fam{font-size:19px;line-height:1.7}
   var sv=null;try{sv=localStorage.getItem('lang')}catch(e){}
   if(!sv&&/^te/i.test(navigator.language||''))sv='te';
   if(sv)setLang(sv);
-  frame();
 
   /* calendar */
   var EV={wedding:{t:'Wedding of Harshitha & Pranideep',s:'20261203T032600Z',e:'20261203T063000Z',l:'Sri Vasavi Kalyana Mandapam, Kalwakurthi Road, Jadcherla',d:'Sumuhurtham (Dhanur Lagnam) at 8:56 AM.'},
