@@ -42,8 +42,11 @@ html[lang=te] .short{letter-spacing:0;font-size:12px}
 /* story */
 .story{height:100vh;height:100svh;position:relative}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#5d3048}
-.scene{position:absolute;inset:0;opacity:0;transform:scale(1.09);transition:opacity 1s ease,transform 5s ease-out;will-change:opacity,transform}
-.scene.on{opacity:1;transform:scale(1)}
+.scene{position:absolute;inset:0;opacity:0;transform:scale(1.08);transition:opacity 1.5s ease-in-out;will-change:opacity,transform}
+.scene.prev{opacity:1;z-index:1;transition:none}
+.scene.on{opacity:1;z-index:2}
+.scene.on,.scene.prev{animation:kb 9s linear both}
+@keyframes kb{from{transform:scale(1.08)}to{transform:scale(1)}}
 .scene>svg{width:100%;height:100%;display:block}
 .vig{position:absolute;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse at 50% 55%,transparent 40%,rgba(70,30,48,.32) 100%),linear-gradient(180deg,rgba(70,30,48,.3),transparent 30%,transparent 72%,rgba(70,30,48,.3))}
 .toran{position:absolute;z-index:4;top:0;left:0;width:100%;height:auto;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
@@ -58,13 +61,13 @@ html[lang=te] .open{font-style:normal;font-size:15px;font-weight:600}
 .dots .done i{width:100%}
 .dots .now i{animation:fillb 2s linear forwards}
 @keyframes fillb{to{width:100%}}
-.copy.on{opacity:1;transform:none}
-.petals{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
+.copy.on{opacity:1;transform:none;transition:opacity 1.2s ease .5s,transform 1.6s ease .5s}
+.petals{position:absolute;inset:0;z-index:4;opacity:.8;pointer-events:none;overflow:hidden}
 .petals i{position:absolute;top:-30px;width:11px;height:11px;border-radius:50%;background:radial-gradient(circle,#ffd77a 30%,#f2a35a 100%);opacity:0;animation:fall linear infinite;filter:blur(.3px)}
 .petals i.j{width:8px;height:8px;background:#fffaf0;box-shadow:0 0 6px #fff}
 .petals i.r{width:11px;height:14px;border-radius:80% 0 80% 0;background:linear-gradient(135deg,#ffd0d8,#e8506f)}
 @keyframes fall{0%{transform:translate(0,0) rotate(0);opacity:0}10%{opacity:.8}100%{transform:translate(var(--dx),108vh) rotate(var(--r));opacity:.35}}
-.copy{position:absolute;z-index:5;left:0;right:0;top:32%;padding:0 46px;text-align:center;color:#fff3d6;opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease;pointer-events:none;will-change:opacity,transform;text-shadow:0 2px 22px rgba(80,36,52,.7),0 0 3px rgba(80,36,52,.35)}
+.copy{position:absolute;z-index:5;left:0;right:0;top:32%;padding:0 46px;text-align:center;color:#fff3d6;opacity:0;transform:translateY(10px);transition:opacity .7s ease,transform 1s ease;pointer-events:none;will-change:opacity,transform;text-shadow:0 2px 22px rgba(80,36,52,.7),0 0 3px rgba(80,36,52,.35)}
 .sacred{font:italic 500 19px/1.6 var(--serif);letter-spacing:.03em;color:var(--gold-l)}
 html[lang=te] .sacred{font-style:normal;letter-spacing:0;font-size:15px;font-weight:600}
 .tag{font:italic 400 19px var(--serif);margin:10px 0 14px;color:#ffe9b8}
@@ -104,14 +107,16 @@ html[lang=te] .odate{letter-spacing:0;font-size:14px}
 @keyframes shim{50%{opacity:.55;filter:brightness(1.4)}}
 
 /* invitation: blush, sage & gold */
-#invitation{--rose:#c4707c;--rose-d:#a4545f;--blush:#f9e6e3;--sage:#7f9b87;--sage-d:#47624f;--gi:#c4a265;--ink2:#4d3c3c;--mut:#8f7a78;
+#invitation{--rose:#c0606c;--rose-d:#8f3f4c;--blush:#fde8d8;--sage:#6e8b3d;--sage-d:#8a5a2b;--gi:#c0914a;--ink2:#4f3a30;--mut:#957a65;
   --h:"Playfair Display","Noto Serif Telugu",Georgia,serif;--b:"Lora","Noto Sans Telugu",Georgia,serif;--sc:"Parisienne","Noto Serif Telugu",cursive;
-  background:#fdf7f1;color:var(--ink2);font-family:var(--b);position:relative;overflow:hidden}
+  background:linear-gradient(180deg,#fcf0da 0%,#f9e4cf 38%,#fcefdc 70%,#f8e1cd 100%);color:var(--ink2);font-family:var(--b);position:relative;overflow:hidden}
 html[lang=te] #invitation{--b:"Noto Sans Telugu",sans-serif;--h:"Noto Serif Telugu",serif;--sc:"Noto Serif Telugu",serif}
 #invitation::before,#invitation::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(40px);z-index:0;pointer-events:none}
-#invitation::before{top:-100px;left:-160px;background:radial-gradient(circle,#f7d9d8,transparent 70%)}
-#invitation::after{top:900px;right:-200px;background:radial-gradient(circle,#dbe8dc,transparent 70%)}
+#invitation::before{top:-100px;left:-160px;background:radial-gradient(circle,#ffd9b0,transparent 70%)}
+#invitation::after{top:900px;right:-200px;background:radial-gradient(circle,#f7c9c0,transparent 70%)}
 .sec{padding:78px 24px;max-width:600px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.band{display:block;width:100%;height:46px;position:relative;z-index:1}
+.band .sw{transform-box:fill-box;transform-origin:50% 0;animation:swing 4s ease-in-out infinite}
 .sprig{display:block;width:210px;height:42px;margin:0 auto 18px;color:var(--sage)}
 .sri{font:italic 500 18px var(--h);color:var(--rose-d);margin-bottom:6px}
 html[lang=te] .sri{font-style:normal;font-size:17px}
@@ -138,12 +143,12 @@ html[lang=te] .para{font-size:15px;line-height:2}
 html[lang=te] .wreathbox small,html[lang=te] .wreathbox .tm{font-style:normal;font-size:14px}
 html[lang=te] .wreathbox .mo{letter-spacing:0;text-transform:none;font-size:15px}
 .cd{display:flex;gap:10px;justify-content:center;margin-top:26px}
-.cd div{width:74px;height:74px;border-radius:50%;background:#fff;border:1px solid #efd4d2;box-shadow:0 8px 22px rgba(196,112,124,.12);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cd div{width:74px;height:74px;border-radius:50%;background:#fffaf0;border:1.5px solid #d9b46a;box-shadow:0 8px 22px rgba(160,90,40,.16);display:flex;flex-direction:column;align-items:center;justify-content:center}
 .cd b{font:500 24px/1.1 var(--h);color:var(--rose-d);font-variant-numeric:tabular-nums}
 .cd span{font:italic 400 11px var(--b);color:var(--mut)}
 html[lang=te] .cd span{font-style:normal;font-size:10px}
-.arch{background:#fff;border:1px solid #efd4d2;border-radius:220px 220px 28px 28px;padding:84px 22px 32px;margin-top:34px;position:relative;box-shadow:0 16px 40px rgba(196,112,124,.14)}
-.arch::before{content:"";position:absolute;inset:8px;border:1px dashed #e7c9c6;border-radius:212px 212px 20px 20px;pointer-events:none}
+.arch{background:#fffaf0;border:1.5px solid #d9b46a;border-radius:220px 220px 28px 28px;padding:84px 22px 32px;margin-top:34px;position:relative;box-shadow:0 18px 44px rgba(160,90,40,.18)}
+.arch::before{content:"";position:absolute;inset:8px;border:1px dashed #e2c487;border-radius:212px 212px 20px 20px;pointer-events:none}
 .arch .ic{position:absolute;top:22px;left:50%;transform:translateX(-50%);width:64px;height:64px}
 .arch .kick{margin-bottom:2px}
 .arch h3{font:500 29px/1.25 var(--h);color:var(--rose-d)}
@@ -154,28 +159,28 @@ html[lang=te] .arch .when{font-style:normal;font-size:15px}
 html[lang=te] .arch .time{font-size:32px}
 .arch .sub{font:italic 400 16px var(--b);color:var(--mut)}
 html[lang=te] .arch .sub{font-style:normal;font-size:14px}
-.arch .where{margin-top:20px;padding-top:18px;border-top:1px solid #f0dad8}
+.arch .where{margin-top:20px;padding-top:18px;border-top:1px dashed #e2c487}
 .arch .where strong{display:block;font:500 22px/1.3 var(--h);color:var(--ink2);margin-bottom:2px}
 html[lang=te] .arch .where strong{font-size:17px}
 .btns{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 24px;border-radius:99px;border:1.5px solid var(--rose);color:var(--rose-d);font:500 14px var(--b);letter-spacing:.03em;background:transparent;cursor:pointer}
-.btn.fill{background:var(--rose);color:#fff;border-color:var(--rose);box-shadow:0 8px 20px rgba(196,112,124,.3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 24px;border-radius:99px;border:1.5px solid var(--rose-d);color:var(--rose-d);font:500 14px var(--b);letter-spacing:.03em;background:transparent;cursor:pointer}
+.btn.fill{background:var(--rose-d);color:#fff7e8;border-color:var(--rose-d);box-shadow:0 8px 20px rgba(143,63,76,.28)}
 .btn:active{transform:scale(.97)}
 .lbl{font:italic 400 17px var(--b);color:var(--mut)}
 html[lang=te] .lbl{font-style:normal;font-size:14px}
 .fam{font:italic 500 24px/1.4 var(--h);color:var(--rose-d);margin-top:10px}
 html[lang=te] .fam{font-style:normal;font-size:19px;line-height:1.7}
-.contact{background:var(--sage-d);color:#f4efe6;max-width:none;position:relative;z-index:1}
+.contact{background:linear-gradient(180deg,#7a4455,#5e3345);color:#fbeedd;max-width:none;position:relative;z-index:1}
 .contact>div{max-width:600px;margin:0 auto}
-.contact .sprig{color:#cfe0d2}
-.contact .kick{color:#cfe0d2}
+.contact .sprig{color:#e8c98a}
+.contact .kick{color:#ecd3a6}
 .contact h2{color:#f6dcc0}
 .contact .btns{flex-direction:column;align-items:center}
-.contact .btn{width:100%;max-width:300px;border-color:#cfe0d2;color:#f4efe6;font-size:17px}
-.contact .btn.fill{background:#f6dcc0;color:var(--sage-d);border-color:#f6dcc0;box-shadow:none}
-.contact address{font:italic 400 17px/1.8 var(--b);margin-top:28px;color:#dfe9e0;font-style:italic}
+.contact .btn{width:100%;max-width:300px;border-color:#e8c98a;color:#fbeedd;font-size:17px}
+.contact .btn.fill{background:#f3d9a8;color:#5e3345;border-color:#f3d9a8;box-shadow:none}
+.contact address{font:italic 400 17px/1.8 var(--b);margin-top:28px;color:#f0dcc0;font-style:italic}
 html[lang=te] .contact address{font-style:normal;font-size:15px}
-.back{display:block;margin:0 auto;padding:30px 0 calc(36px + env(safe-area-inset-bottom));font:italic 400 17px var(--h);color:var(--rose-d);text-align:center;background:#fdf7f1}
+.back{display:block;margin:0 auto;padding:30px 0 calc(36px + env(safe-area-inset-bottom));font:italic 400 17px var(--h);color:var(--rose-d);text-align:center;background:#f8e1cd}
 .back .sc{display:block;font:400 34px var(--sc);color:var(--rose);margin-bottom:6px}
 html[lang=te] .back .sc{font:700 20px var(--h)}
 .fade{opacity:0;transform:translateY(16px);transition:opacity 1.3s ease,transform 1.3s ease}
@@ -198,7 +203,7 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
   <g id="lotus"><path d="M0 0C-14-14-14-34 0-48C14-34 14-14 0 0Z" fill="#f7a8bb"/><path d="M0 0C-26-6-40-26-34-40C-16-36-4-20 0 0Z" fill="#f48aa5"/><path d="M0 0C26-6 40-26 34-40C16-36 4-20 0 0Z" fill="#f48aa5"/><path d="M0 0C-38 6-58-8-60-22C-40-26-14-18 0 0Z" fill="#e9668a"/><path d="M0 0C38 6 58-8 60-22C40-26 14-18 0 0Z" fill="#e9668a"/></g>
   <g id="paisley"><path d="M0 0C-14-4-16-22-6-30C4-38 16-30 14-18C12-8 4-2 0 0Z" fill="currentColor"/><circle cx="4" cy="-20" r="3" fill="#4a0b16" opacity=".5"/></g>
   <symbol id="ornament" viewBox="0 0 230 34"><g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 17H92M138 17H220"/></g><g fill="currentColor"><path d="M115 4l8 13-8 13-8-13z"/><circle cx="98" cy="17" r="3"/><circle cx="132" cy="17" r="3"/><circle cx="84" cy="17" r="2"/><circle cx="146" cy="17" r="2"/><path d="M10 17l6-5v10zM220 17l-6-5v10z"/></g></symbol>
-  <symbol id="sprig" viewBox="0 0 210 42"><g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 21H92M118 21H202"/></g><g fill="currentColor" opacity=".85"><ellipse cx="30" cy="14" rx="9" ry="3.6" transform="rotate(-28 30 14)"/><ellipse cx="30" cy="28" rx="9" ry="3.6" transform="rotate(28 30 28)"/><ellipse cx="54" cy="14" rx="9" ry="3.6" transform="rotate(-28 54 14)"/><ellipse cx="54" cy="28" rx="9" ry="3.6" transform="rotate(28 54 28)"/><ellipse cx="78" cy="14" rx="9" ry="3.6" transform="rotate(-28 78 14)"/><ellipse cx="78" cy="28" rx="9" ry="3.6" transform="rotate(28 78 28)"/><ellipse cx="132" cy="14" rx="9" ry="3.6" transform="rotate(28 132 14)"/><ellipse cx="132" cy="28" rx="9" ry="3.6" transform="rotate(-28 132 28)"/><ellipse cx="156" cy="14" rx="9" ry="3.6" transform="rotate(28 156 14)"/><ellipse cx="156" cy="28" rx="9" ry="3.6" transform="rotate(-28 156 28)"/><ellipse cx="180" cy="14" rx="9" ry="3.6" transform="rotate(28 180 14)"/><ellipse cx="180" cy="28" rx="9" ry="3.6" transform="rotate(-28 180 28)"/></g><g><circle cx="105" cy="21" r="5" fill="#c4707c"/><circle cx="105" cy="13" r="4.4" fill="#e8a0a8"/><circle cx="105" cy="29" r="4.4" fill="#e8a0a8"/><circle cx="97" cy="21" r="4.4" fill="#e8a0a8"/><circle cx="113" cy="21" r="4.4" fill="#e8a0a8"/><circle cx="105" cy="21" r="2.4" fill="#f6d27a"/></g></symbol>
+  <symbol id="sprig" viewBox="0 0 210 42"><g fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 21H92M118 21H202"/></g><g fill="currentColor" opacity=".85"><ellipse cx="30" cy="14" rx="9" ry="3.6" transform="rotate(-28 30 14)"/><ellipse cx="30" cy="28" rx="9" ry="3.6" transform="rotate(28 30 28)"/><ellipse cx="54" cy="14" rx="9" ry="3.6" transform="rotate(-28 54 14)"/><ellipse cx="54" cy="28" rx="9" ry="3.6" transform="rotate(28 54 28)"/><ellipse cx="78" cy="14" rx="9" ry="3.6" transform="rotate(-28 78 14)"/><ellipse cx="78" cy="28" rx="9" ry="3.6" transform="rotate(28 78 28)"/><ellipse cx="132" cy="14" rx="9" ry="3.6" transform="rotate(28 132 14)"/><ellipse cx="132" cy="28" rx="9" ry="3.6" transform="rotate(-28 132 28)"/><ellipse cx="156" cy="14" rx="9" ry="3.6" transform="rotate(28 156 14)"/><ellipse cx="156" cy="28" rx="9" ry="3.6" transform="rotate(-28 156 28)"/><ellipse cx="180" cy="14" rx="9" ry="3.6" transform="rotate(28 180 14)"/><ellipse cx="180" cy="28" rx="9" ry="3.6" transform="rotate(-28 180 28)"/></g><g><circle cx="105" cy="21" r="5" fill="#d0561f"/><circle cx="105" cy="13" r="4.4" fill="#f28c1b"/><circle cx="105" cy="29" r="4.4" fill="#f28c1b"/><circle cx="97" cy="21" r="4.4" fill="#f28c1b"/><circle cx="113" cy="21" r="4.4" fill="#f28c1b"/><circle cx="105" cy="21" r="2.4" fill="#f6d27a"/></g></symbol>
   <symbol id="corner" viewBox="0 0 26 26"><path d="M2 24V8Q2 2 8 2H24" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="8" r="3" fill="currentColor"/></symbol>
 </defs></svg>
 
@@ -277,7 +282,7 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
     <rect width="400" height="800" fill="url(#bgB)"/>
     <circle class="glowp" cx="200" cy="640" r="250" fill="url(#gB)"/>
     <!-- inner pillars -->
-    <g opacity=".45"><rect x="104" y="170" width="18" height="500" fill="url(#pil)"/><rect x="278" y="170" width="18" height="500" fill="url(#pil)"/></g>
+    <g opacity=".3"><rect x="104" y="170" width="18" height="500" fill="url(#pil)"/><rect x="278" y="170" width="18" height="500" fill="url(#pil)"/></g>
     <!-- outer pillars (banana stem, flowers) -->
     <g><rect x="30" y="90" width="30" height="620" fill="url(#pil)"/><rect x="340" y="90" width="30" height="620" fill="url(#pil)"/></g>
     <g id="pilRings"></g>
@@ -287,7 +292,7 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
     <path d="M0 40H400V140Q300 168 200 140Q100 168 0 140Z" fill="#c4505c"/>
     <path d="M0 62H400" stroke="#f0cf7d" stroke-width="3"/><path d="M0 118Q100 146 200 118Q300 146 400 118" fill="none" stroke="#f0cf7d" stroke-width="3"/>
     <g id="canopyDots"></g>
-    <g id="jasB" opacity=".7"></g>
+    <g id="jasB" opacity=".5"></g>
     <!-- floor rangoli -->
     <g id="rangoli" transform="translate(200 668) scale(1 .36)"></g>
     <!-- homam -->
@@ -435,13 +440,10 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
     <p class="sacred"><span data-en>Rooted in tradition</span><span data-te>సంప్రదాయపు వేర్లు</span></p>
     <h2 class="line" style="margin-top:12px"><span data-en>Kumkum, turmeric,<br><em>and a sacred thread.</em></span><span data-te>కుంకుమ, పసుపు,<br><em>మంగళసూత్రం.</em></span></h2>
   </div>
-  <div class="copy" data-a=".64" data-b=".8">
+  <div class="copy" data-top="28%">
     <p class="sacred"><span data-en>Flowers, blessings &amp; new beginnings</span><span data-te>పూలు, ఆశీస్సులు, కొత్త ఆరంభాలు</span></p>
-    <h2 class="line" style="margin-top:12px"><span data-en>The garlands<br><em>are exchanged.</em></span><span data-te>దండలు<br><em>మార్చుకునే వేళ.</em></span></h2>
-  </div>
-  <div class="copy" data-a=".84" data-b="1.1" data-top="26%">
-    <h2 class="line"><span data-en>It was<br><em>always you.</em></span><span data-te>ఎప్పటికీ<br><em>నువ్వే.</em></span></h2>
-    <p class="script" style="font-size:clamp(28px,8vw,44px)"><span data-en>Two families. One beautiful story.</span><span data-te>రెండు కుటుంబాలు. ఒక అందమైన కథ.</span></p>
+    <h2 class="line" style="margin-top:12px"><span data-en>It was<br><em>always you.</em></span><span data-te>ఎప్పటికీ<br><em>నువ్వే.</em></span></h2>
+    <p class="script" style="font-size:clamp(26px,7.4vw,40px)"><span data-en>Two families. One beautiful story.</span><span data-te>రెండు కుటుంబాలు. ఒక అందమైన కథ.</span></p>
   </div>
 
   <a class="open" href="#invitation"><span data-en>Open the invitation</span><span data-te>ఆహ్వానం చూడండి</span> <b>↓</b></a>
@@ -450,6 +452,7 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
 </section>
 
 <section id="invitation">
+ <svg class="band" id="band1" viewBox="0 0 400 46" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="6" x2="400" y2="6" stroke="#c0914a" stroke-width="2"/></svg>
  <div class="sec fade">
   <svg class="sprig"><use href="#sprig"/></svg>
   <p class="sri"><span data-en>|| Sri Ganeshaya Namaha ||</span><span data-te>|| శ్రీ గణేశాయ నమః ||</span></p>
@@ -602,9 +605,15 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
   var pe=$('petals');for(i=0;i<20;i++){var pp=document.createElement('i');pp.className=i%4==0?'j':(i%4==1?'r':'');pp.style.left=(Math.random()*100)+'%';pp.style.animationDuration=(14+Math.random()*12)+'s';pp.style.animationDelay=(-Math.random()*18)+'s';pp.style.setProperty('--dx',(Math.random()*160-80)+'px');pp.style.setProperty('--r',(Math.random()*540)+'deg');pe.appendChild(pp)}
 
   /* autoplay story: change every 2 seconds */
-  var STEP=+((location.search.match(/step=(\d+)/)||[0,2000])[1]),scenes=['sA','sB','sC','sD'].map($),map=[0,1,2,3,3],dots=$('dots'),copies=[].slice.call(document.querySelectorAll('.copy')),cur=-1,timer=null,story=$('our-story');
+  var STEP=+((location.search.match(/step=(\d+)/)||[0,2000])[1]),scenes=['sA','sB','sC','sD'].map($),map=[0,1,2,3],dots=$('dots'),copies=[].slice.call(document.querySelectorAll('.copy')),cur=-1,timer=null,story=$('our-story');
   copies.forEach(function(c,n){c.style.top=c.getAttribute('data-top')||'32%';var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Scene '+(n+1));b.innerHTML='<i></i>';b.onclick=function(){go(n);restart()};dots.appendChild(b)});
-  function go(n){cur=n;scenes.forEach(function(e,i){e.classList.toggle('on',i===map[n])});copies.forEach(function(c,i){c.classList.toggle('on',i===n)});
+  var prevS=null;
+  function go(n){var ns=scenes[map[n]];
+    if(ns!==scenes[map[cur]]||cur<0){ if(prevS&&prevS!==ns)prevS.classList.remove('prev'); var old=cur>=0?scenes[map[cur]]:null;
+      scenes.forEach(function(e){if(e!==ns&&e!==old)e.classList.remove('on','prev')});
+      if(old&&old!==ns){old.classList.remove('on');old.classList.add('prev');prevS=old}
+      ns.classList.remove('prev');ns.classList.add('on')}
+    cur=n;copies.forEach(function(c,i){c.classList.toggle('on',i===n)});
     [].forEach.call(dots.children,function(b,i){b.className=i<n?'done':(i===n?'now':'');if(i===n){var f=b.firstChild;f.style.animation='none';void f.offsetWidth;f.style.animation=''}})}
   function next(){go((cur+1)%copies.length)}
   function stop(){clearInterval(timer);timer=null}
@@ -613,13 +622,17 @@ html[lang=te] .back .sc{font:700 20px var(--h)}
   if('IntersectionObserver' in window){new IntersectionObserver(function(es){if(es[0].isIntersecting){if(!timer)restart()}else stop()},{threshold:.15}).observe(story)}
   document.addEventListener('visibilitychange',function(){if(document.hidden)stop();else restart()});
 
+  var bd=$('band1'),mc2=['#ffb627','#f28c1b','#ffd24d'];
+  for(i=0;i<21;i++){g=mk('g',{transform:'translate('+(i*20)+' 6)'},bd);var g2=mk('g',{class:'sw',style:'animation-delay:-'+(i*.3)+'s'},g);mk('use',{href:'#leaf',transform:'scale(.7)'},g2)}
+  for(i=0;i<10;i++){g=mk('g',{transform:'translate('+(10+i*40)+' 6)'},bd);g2=mk('g',{class:'sw',style:'animation-delay:-'+(i*.4)+'s'},g);mk('line',{x1:0,y1:0,x2:0,y2:10,stroke:'#c0914a','stroke-width':1},g2);mk('circle',{cx:0,cy:17,r:6,fill:mc2[i%3]},g2);mk('circle',{cx:0,cy:17,r:2.6,fill:'#c0521a'},g2)}
+
   /* floral wreath around the date */
-  var wr=$('wreath'),lc=['#7f9b87','#97b09e','#6a8873'],fc=['#e8a0a8','#f3c3c5','#f6d27a'];
+  var wr=$('wreath'),lc=['#6e8b3d','#8aa24e','#58772e'],fc=['#f28c1b','#ffc233','#e0556f'];
   for(i=0;i<40;i++){var an=i/40*Math.PI*2,x0=150+128*Math.cos(an),y0=150+128*Math.sin(an),deg=an*180/Math.PI;
     var lf=mk('g',{transform:'translate('+x0+' '+y0+') rotate('+(deg+90+(i%2?35:-35))+')'},wr);mk('ellipse',{cx:0,cy:-10,rx:5.5,ry:14,fill:lc[i%3],opacity:.95},lf)}
   for(i=0;i<20;i++){var an2=(i+.5)/20*Math.PI*2,x1=150+128*Math.cos(an2),y1=150+128*Math.sin(an2),fg=mk('g',{transform:'translate('+x1+' '+y1+')'},wr);
     for(var q=0;q<5;q++)mk('ellipse',{cx:0,cy:-6,rx:3.6,ry:6,fill:fc[i%3],transform:'rotate('+(q*72)+')'},fg);mk('circle',{r:2.6,fill:'#f6d27a'},fg)}
-  mk('ellipse',{cx:150,cy:150,rx:112,ry:112,fill:'none',stroke:'#c4a265','stroke-width':1,'stroke-dasharray':'2 5'},wr);
+  mk('ellipse',{cx:150,cy:150,rx:112,ry:112,fill:'none',stroke:'#c0914a','stroke-width':1,'stroke-dasharray':'2 5'},wr);
 
   addEventListener('scroll',function(){var d=document.documentElement;$('prog').style.transform='scaleX('+Math.min(1,scrollY/Math.max(1,d.scrollHeight-innerHeight))+')'},{passive:true});
 
